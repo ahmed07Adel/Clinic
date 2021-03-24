@@ -1,0 +1,217 @@
+﻿@model Clinic.Models.AdmissionViewModel
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+<div class="container">
+    <form method="post">
+        <div asp-validation-summary="All" class="text-danger"></div>
+
+        <div class="row mb-4">
+            <div class="col">
+                <div class="form-outline">
+                    <input type="text" asp-for="AdmissionRequestNumber" id="form3Example1" class="form-control" />
+                    <label class="form-label" for="form3Example1">Admission Request No.</label>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-outline">
+                    <input type="text" asp-for="RegistrationNumber" id="form3Example2" class="form-control" />
+                    <label class="form-label" for="form3Example2">Registration No.</label>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-outline">
+                    <input asp-for="AddminssionTime" type="date" asp-format="{0:yyyy-MM-dd}" class="form-control" />
+                    <label class="form-label" for="">AddminssionTime.</label>
+
+                </div>
+            </div>
+        </div>
+        <div>
+            <h5>For Padiatric/ Neonate</h5>
+            @for (int i = 0; i < Model.PadiatricandNeonates.Count; i++)
+            {
+                <input type="checkbox" value="@Model.PadiatricandNeonates[i].Id"/>
+                <label class="form-check-label" for="@Model.PadiatricandNeonates[i].Id">
+                    @Model.PadiatricandNeonates[i].Name
+                </label>
+            }
+        </div>
+        <div class="row mb-4">
+            <div class="col">
+                <div class="form-outline">
+                    @Html.DropDownListFor(m => m.SelectedPatienType, Model.PatientTypes)
+                    <br />
+                    <label class="form-label" for="form3Example1">PatientTypes</label>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-outline">
+                    @Html.DropDownListFor(m => m.SelectedPatienSubType, Model.PatientSubType)
+                    <br />
+                    <label class="form-label" for="form3Example1">PatientSubTypes</label>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-outline">
+                    <input type="text" asp-for="TrafficScheme" id="form3Example2" class="form-control" />
+                    <label class="form-label" for="form3Example2">TrafficScheme.</label>
+                    <span asp-validation-for="TrafficScheme" class="text-danger"></span>
+
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-outline">
+                    <input type="text" asp-for="EstimatedLengthOfDays" id="form3Example2" class="form-control" />
+                    <label class="form-label" for="form3Example2">EstimatedLengthOfStay.</label>
+                </div>
+            </div>
+
+
+
+        </div>
+        <div class="row mb-4">
+            <div class="col">
+                <div class="form-outline">
+                    <input type="text" asp-for="AdmittingDoctor" id="form3Example2" class="form-control" />
+                    <label class="form-label" for="form3Example2">AdmittingDoctor</label>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-outline">
+                    <input type="text" asp-for="DoctorInCharge" id="form3Example2" class="form-control" />
+                    <label class="form-label" for="form3Example2">DoctorInCharge.</label>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-outline">
+                    <input type="text" asp-for="Speciality" id="form3Example2" class="form-control" />
+                    <label class="form-label" for="form3Example2">Speciality.</label>
+                </div>
+            </div>
+
+
+
+
+        </div>
+
+        <div class="row mb-4">
+            <div class="form-outline">
+                <textarea class="form-control" asp-for="Remarks" id="textAreaExample" rows="4"></textarea>
+                <label class="form-label" for="textAreaExample">Remark</label>
+            </div>
+        </div>
+        <div class="row mb-4">
+            <div class="form-check">
+                <input class="form-check-input"
+                       type="checkbox"
+                       asp-for="HasPatientMobile"
+                       id="flexCheckDefault" />
+                <label class="form-check-label" for="flexCheckDefault">
+                    PatientMob.
+                </label>
+            </div>
+            <div class="col">
+
+                <input type="text" asp-for="MobileNumber" id="form3Example2" class="form-control" />
+
+
+            </div>
+          
+                    <div class="col">
+                        <div class="form-outline">
+                            <textarea class="form-control" asp-for="SpecialInstructions" id="textAreaExample" rows="4"></textarea>
+                            <label class="form-label" for="textAreaExample">SpecialInstructions</label>
+                        </div>
+                    </div>
+
+
+
+                </div>
+        <div class="row mb-4">
+            <h3 class="align-self-start">Bed Allotment:</h3>
+        </div>
+        <div class="row mb-4">
+            <div class="col">
+                <div class="form-outline">
+                    <input type="text" asp-for="Bed.BedType" id="form3Example1" class="form-control" />
+                    <label class="form-label" for="form3Example1">Type Of Bed Required.</label>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-outline">
+                    <input type="text" id="form3Example2" asp-for="Bed.RoomType" class="form-control" />
+                    <label class="form-label" for="form3Example2">Eligible Room Type.</label>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-4">
+            <div class="col">
+                <div class="form-outline">
+                    <input type="text" id="form3Example1" asp-for="Bed.Ward" class="form-control" />
+                    <label class="form-label" for="form3Example1">Ward.</label>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-outline">
+                    <input type="text" asp-for="Bed.Room" id="form3Example1" class="form-control" />
+                    <label class="form-label" for="form3Example1">Room.</label>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-outline">
+                    <input type="text" asp-for="Bed.BedNumber" id="form3Example1" class="form-control" />
+                    <label class="form-label" for="form3Example1">Bed No.</label>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-outline">
+                    <input type="text" asp-for="Bed.BedBillingClass" id="form3Example1" class="form-control" />
+                    <label class="form-label" for="form3Example1">Bed Billing Class.</label>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="row mb-4">
+            <div class="col">
+                <div class="form-outline">
+                    <textarea class="form-control" asp-for="ServiceAdviced" id="textAreaExample" rows="4"></textarea>
+                    <label class="form-label" for="textAreaExample">Service Advised</label>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-4">
+            <div class="col-md-3">
+                <input type="text" asp-for="Total" id="form3Example1" class="form-control" />
+                <label class="form-label" for="form3Example1">Total.</label>
+
+
+            </div>
+
+        </div>
+        <div class="row mb-4">
+            <div class="col">
+                <div class="form-outline">
+                    <textarea class="form-control" asp-for="ServiceAdviced" id="textAreaExample" rows="4"></textarea>
+                    <label class="form-label" for="textAreaExample">Service Advised</label>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+            <!-- Submit button -->
+            <button type="submit" class="btn btn-primary btn-block mb-4">Create Admission</button>
+
+           
+    </form>
+
+</div>
+
